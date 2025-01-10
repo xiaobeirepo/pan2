@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.400000,
+https://gitee.com/okayjskl/oxpcjk/raw/master/k0lv32c4output000.ts
+#EXTINF:3.200000,
+https://gitee.com/okayjskl/oxpcjk/raw/master/k0lv32c4output001.ts
+#EXT-X-ENDLIST
