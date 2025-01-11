@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:8
+#EXTINF:6.793844,
+https://gitee.com/okayjskl/ixosu/raw/master/08NhSSSIoutput000.ts
+#EXTINF:7.606156,
+https://gitee.com/okayjskl/ixosu/raw/master/08NhSSSIoutput001.ts
+#EXT-X-ENDLIST
