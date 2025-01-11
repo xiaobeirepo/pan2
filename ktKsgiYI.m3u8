@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:10
+#EXTINF:9.525000,
+https://gitee.com/okayjskl/ixosu/raw/master/ktKsgiYIoutput000.ts
+#EXTINF:0.862500,
+https://gitee.com/okayjskl/ixosu/raw/master/ktKsgiYIoutput001.ts
+#EXT-X-ENDLIST
