@@ -1,0 +1,14 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.400000,
+https://gitee.com/okayjskl/oksldpc/raw/master/AGfq8aGaoutput000.ts
+#EXTINF:8.333333,
+https://gitee.com/okayjskl/oksldpc/raw/master/AGfq8aGaoutput001.ts
+#EXTINF:7.866667,
+https://gitee.com/okayjskl/oksldpc/raw/master/AGfq8aGaoutput002.ts
+#EXTINF:1.066667,
+https://gitee.com/okayjskl/oksldpc/raw/master/AGfq8aGaoutput003.ts
+#EXT-X-ENDLIST
