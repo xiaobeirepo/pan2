@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.433333,
+https://gitee.com/okayjskl/oxocjs/raw/master/MTVpBGC4output000.ts
+#EXTINF:8.366667,
+https://gitee.com/okayjskl/oxocjs/raw/master/MTVpBGC4output001.ts
+#EXTINF:1.633333,
+https://gitee.com/okayjskl/oxocjs/raw/master/MTVpBGC4output002.ts
+#EXT-X-ENDLIST
