@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.366667,
+https://gitee.com/okayjskl/oxocjs/raw/master/63CY35ssoutput000.ts
+#EXTINF:4.166667,
+https://gitee.com/okayjskl/oxocjs/raw/master/63CY35ssoutput001.ts
+#EXTINF:2.800000,
+https://gitee.com/okayjskl/oxocjs/raw/master/63CY35ssoutput002.ts
+#EXT-X-ENDLIST
