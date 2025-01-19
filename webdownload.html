@@ -1,162 +1,149 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文件数据合并与下载进度</title>
+    <title>文件数据合并</title>
     <style>
-        #progress-bar {
-            width: 100%;
-            background-color: #f3f3f3;
-        }
-        #progress-bar div {
+        #progress-container {
+            width: 80%;
+            margin: 20px auto;
             height: 20px;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            position: relative;
+        }
+        #progress-bar {
+            height: 100%;
             background-color: #4caf50;
             width: 0%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
         }
-        #file-link {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #333;
+        #progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            color: #000;
         }
-        #download-status, #download-speed {
-            margin-top: 20px;
-            font-size: 16px;
+        #speed-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
             color: #555;
         }
-        #slice-progress {
-            margin-top: 20px;
-            font-size: 16px;
-        }
     </style>
-</head>
-<body>
-    <h1>文件数据合并与下载进度</h1>
-    <div id="file-link">正在加载文件...</div>
-    <div id="slice-progress">切片进度: 0/0</div>
-    <div id="download-status">正在下载文件，等待中...</div>
-    <div id="download-speed">下载速度: 0 KB/s</div>
-    <div id="progress-bar">
-        <div id="progress"></div>
-    </div>
-
     <script>
- // 文件 URL 数组
-        const fileUrls = ['https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0001.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0002.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0003.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0004.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0005.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0006.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0007.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0008.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0009.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0010.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0011.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0012.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0013.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0014.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0015.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0016.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0017.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0018.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0019.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0020.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0021.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0022.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0023.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0024.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0025.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0026.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0027.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0028.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0029.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0030.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0031.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0032.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0033.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0034.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0035.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0036.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0037.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0038.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0039.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0040.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0041.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0042.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0043.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0044.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0045.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0046.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0047.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0048.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0049.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0050.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0051.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0052.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0053.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0054.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0055.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0056.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0057.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0058.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0059.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0060.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0061.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0062.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0063.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0064.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0065.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0066.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0067.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0068.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0069.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0070.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0071.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0072.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0073.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0074.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0075.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0076.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0077.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0078.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0079.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0080.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0081.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0082.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0083.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0084.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0085.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0086.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0087.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0088.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0089.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0090.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0091.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0092.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0093.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0094.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0095.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0096.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0097.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0098.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0099.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0100.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0101.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0102.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0103.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0104.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0105.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0106.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0107.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0108.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0109.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0110.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0111.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0112.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0113.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0114.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0115.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0116.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0117.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0118.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0119.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0120.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0121.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0122.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0123.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0124.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0125.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0126.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0127.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0128.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0129.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0130.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0131.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0132.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0133.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0134.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0135.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0136.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0137.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0138.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0139.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0140.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0141.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0142.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0143.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0144.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0145.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0146.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0147.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0148.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0149.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0150.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0151.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0152.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0153.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0154.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0155.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0156.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0157.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0158.zip', 'https://xiaobeirepo.github.io/imgtest/jJhYLkSbnvao_part0159.zip', ]; //文件切片
+        // 文件 URL 数组
+        const fileUrls = [
+            "https://xiaobeirepo.github.io/imgtest/ouVoyAf4compressed_part0001.zip",
+            "https://xiaobeirepo.github.io/imgtest/ouVoyAf4compressed_part0002.zip"
+        ];
 
+        // 提取合并后的文件名
+        function getMergedFilename(urls) {
+            const firstUrl = urls[0];
+            const filename = firstUrl.split('/').pop();
+            return filename.replace(/^[a-zA-Z0-9]{8}/, '').replace(/_part\d+\.zip$/, '.zip');
+        }
 
-        let totalBytes = 0; // 总字节数
-        let totalDownloaded = 0; // 已下载字节数
-        let startTime = 0; // 用于计算下载速度
-        let sliceIndex = 0; // 当前切片的索引
-        let mergedData = []; // 存储合并后的数据
+        // 更新进度条
+        function updateProgressBar(progress, total) {
+            const percentage = Math.round((progress / total) * 100);
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}%`;
+        }
 
-        // 以二进制形式加载文件
-        async function fetchFileAsBinary(url, onProgress) {
+        // 显示下载速度
+        function updateSpeed(sizeInBytes, timeInSeconds) {
+            let speedText = '';
+            const sizeInKBps = sizeInBytes / 1024 / timeInSeconds;
+
+            if (sizeInKBps >= 1024) {
+                const sizeInMBps = (sizeInKBps / 1024).toFixed(2);
+                speedText = `当前下载速度: ${sizeInMBps} MB/s`;
+            } else {
+                speedText = `当前下载速度: ${sizeInKBps.toFixed(2)} KB/s`;
+            }
+
+            document.getElementById('speed-text').textContent = speedText;
+        }
+
+        // 以二进制形式加载文件并记录下载时间
+        async function fetchFileAsBinary(url) {
             try {
+                const startTime = performance.now(); // 开始时间
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch ${url}: ${response.status}`);
                 }
-                const reader = response.body.getReader();
-                const contentLength = +response.headers.get("Content-Length");
-                let loaded = 0;
-                const chunks = [];
-                
-                // 记录下载开始时间
-                if (startTime === 0) startTime = Date.now();
-                
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    chunks.push(value);
-                    loaded += value.length;
-                    totalDownloaded += value.length;
-                    onProgress(loaded / contentLength);
-                }
+                const buffer = await response.arrayBuffer();
+                const endTime = performance.now(); // 结束时间
 
-                return new Uint8Array(chunks.flat());
+                // 计算下载速度
+                const sizeInBytes = buffer.byteLength;
+                const timeInSeconds = (endTime - startTime) / 1000;
+                updateSpeed(sizeInBytes, timeInSeconds);
+
+                return new Uint8Array(buffer);
             } catch (error) {
                 console.error(error);
                 return null;
             }
         }
 
-        // 更新下载进度条
-        function updateProgressBar(progress) {
-            const progressElement = document.getElementById('progress');
-            progressElement.style.width = `${(progress * 100).toFixed(2)}%`;
-        }
-
-        // 更新文件链接显示
-        function updateFileLink(url) {
-            const fileLinkElement = document.getElementById('file-link');
-            fileLinkElement.textContent = `当前处理文件：${url}`;
-        }
-
-        // 更新切片下载状态
-        function updateSliceProgress() {
-            const sliceProgressElement = document.getElementById('slice-progress');
-            sliceProgressElement.textContent = `切片进度: ${sliceIndex + 1}/${fileUrls.length}`;
-        }
-
-        // 更新下载状态
-        function updateDownloadStatus(status) {
-            const downloadStatusElement = document.getElementById('download-status');
-            downloadStatusElement.textContent = status;
-        }
-
-        // 计算下载速度（KB/s 或 MB/s）
-        function updateDownloadSpeed() {
-            const elapsedTime = (Date.now() - startTime) / 1000; // 获取下载经过的时间
-            const speed = totalDownloaded / 1024 / elapsedTime; // 计算下载速度（KB/s）
-            const speedFormatted = speed < 1024 ? `${speed.toFixed(2)} KB/s` : `${(speed / 1024).toFixed(2)} MB/s`;
-            const downloadSpeedElement = document.getElementById('download-speed');
-            downloadSpeedElement.textContent = `下载速度: ${speedFormatted}`;
-        }
-
-        // 合并文件并显示进度
+        // 加载文件并合并数据
         async function mergeFiles() {
             let mergedData = [];
-            
-            // 显示切片进度
-            updateSliceProgress();
-            
-            for (const url of fileUrls) {
-                updateFileLink(url); // 显示当前文件链接
-                updateDownloadStatus(`下载中：${url}`); // 更新下载状态
-                
-                const fileData = await fetchFileAsBinary(url, updateProgressBar);
+            const totalFiles = fileUrls.length;
+
+            for (let i = 0; i < totalFiles; i++) {
+                const url = fileUrls[i];
+                const fileData = await fetchFileAsBinary(url);
                 if (fileData) {
                     mergedData = mergedData.concat(Array.from(fileData));
                 } else {
                     console.warn(`Failed to load file: ${url}`);
                 }
-                
-                // 切片完成，更新切片进度
-                sliceIndex++;
-                updateSliceProgress();
+                // 更新进度条
+                updateProgressBar(i + 1, totalFiles);
             }
 
             const mergedBlob = new Blob([new Uint8Array(mergedData)]);
-            const downloadLink = URL.createObjectURL(mergedBlob);
+            console.log("合并后的数据大小:", mergedBlob.size);
 
-            // 设置文件名
-            const fileName = "nvao.zip";  // 自定义文件名
-            updateDownloadStatus(`下载完成，点击下面按钮下载合并后的文件`);
+            // 在页面显示结果
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = `合并后的数据大小: ${mergedBlob.size} 字节`;
 
-            // 提供下载按钮
-            const downloadButton = document.createElement('a');
-            downloadButton.href = downloadLink;
-            downloadButton.download = fileName; // 设置文件名
-            downloadButton.textContent = "下载合并后的文件";
-            document.body.appendChild(downloadButton);
+            // 提取合并后的文件名
+            const mergedFilename = getMergedFilename(fileUrls);
+
+            // 动态创建下载链接
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(mergedBlob);
+            downloadLink.download = mergedFilename;
+            downloadLink.textContent = `点击下载合并后的文件: ${mergedFilename}`;
+            downloadLink.style.display = 'block';
+            resultDiv.appendChild(downloadLink);
         }
 
         // 页面加载时执行
         window.onload = mergeFiles;
-
-        // 每秒更新下载速度
-        setInterval(updateDownloadSpeed, 1000);
     </script>
+</head>
+<body>
+    <h1>文件数据合并</h1>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+        <div id="progress-text">0%</div>
+    </div>
+    <div id="speed-text">当前下载速度: --</div>
+    <div id="result">正在加载并合并文件数据...</div>
 </body>
 </html>
