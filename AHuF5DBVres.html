@@ -91,7 +91,7 @@
                                 <img class="avatar" src="//image.quark.cn/s/uae/g/3o/broccoli/resource/202309/73a5c130-4b00-11ee-8cd0-efec1d59dc4e.png">
                             </div>
                             <div class="info-wrap">
-                                <span class="author-name">更多资源：北的屋.com</span>
+                                <span class="author-name">测试：北的屋.com</span>
                                 <span class="file-stat">永久有效</span>
                             </div>
                         </div>
@@ -142,6 +142,26 @@
     </div>
 
     <script>
+                // 在其他脚本之前添加域名检测和URL替换逻辑
+        (function checkAndReplaceDomain() {
+            const targetDomain = 'pan2-3f0.pages.dev';
+            const currentDomain = window.location.hostname;
+            const oldDomain = 'xiaobeirepo.github.io/pan2';
+            
+            if (currentDomain === targetDomain) {
+                // 如果filelist数组已经存在，替换其中的URL
+                if (typeof filelist !== 'undefined' && Array.isArray(filelist)) {
+                    filelist = filelist.map(url => {
+                        const oldUrl = new URL(url);
+                        if (oldUrl.href.includes(oldDomain)) {
+                            return `https://${targetDomain}/${oldUrl.pathname.split('/').pop()}`;
+                        }
+                        return url;
+                    });
+                }
+            }
+        })();
+
         async function copyCurrentURL() {
             const url = window.location.href;
 
