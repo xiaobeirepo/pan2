@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:7
+#EXTINF:6.066667,
+https://gitee.com/okayjskl/oxkslpw/raw/master/GwPs5RU4output000.ts
+#EXTINF:6.066667,
+https://gitee.com/okayjskl/oxkslpw/raw/master/GwPs5RU4output001.ts
+#EXT-X-ENDLIST
