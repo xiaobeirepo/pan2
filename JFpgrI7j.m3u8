@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:10
+#EXTINF:9.353467,
+https://gitee.com/okayjskl/pxpsowl/raw/master/JFpgrI7joutput000.ts
+#EXTINF:9.643500,
+https://gitee.com/okayjskl/pxpsowl/raw/master/JFpgrI7joutput001.ts
+#EXTINF:6.163133,
+https://gitee.com/okayjskl/pxpsowl/raw/master/JFpgrI7joutput002.ts
+#EXT-X-ENDLIST
