@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:11
+#EXTINF:10.356156,
+https://gitee.com/okayjskl/pxpsowl/raw/master/prSW5U4Soutput000.ts
+#EXTINF:1.972589,
+https://gitee.com/okayjskl/pxpsowl/raw/master/prSW5U4Soutput001.ts
+#EXT-X-ENDLIST
