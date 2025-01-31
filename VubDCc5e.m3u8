@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:11
+#EXTINF:10.061078,
+https://gitee.com/okayjskl/pclxsk/raw/master/VubDCc5eoutput000.ts
+#EXTINF:9.981233,
+https://gitee.com/okayjskl/pclxsk/raw/master/VubDCc5eoutput001.ts
+#EXTINF:2.914522,
+https://gitee.com/okayjskl/pclxsk/raw/master/VubDCc5eoutput002.ts
+#EXT-X-ENDLIST
