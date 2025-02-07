@@ -1,0 +1,8 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:7
+#EXTINF:6.100000,
+https://gitee.com/okayjskl/okcls/raw/master/WtWA58Xpoutput000.ts
+#EXT-X-ENDLIST
