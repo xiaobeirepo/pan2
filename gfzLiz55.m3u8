@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.400300,
+https://gitee.com/okayjskl/oxkosl/raw/master/gfzLiz55output000.ts
+#EXTINF:2.766667,
+https://gitee.com/okayjskl/oxkosl/raw/master/gfzLiz55output001.ts
+#EXTINF:0.600000,
+https://gitee.com/okayjskl/oxkosl/raw/master/gfzLiz55output002.ts
+#EXT-X-ENDLIST
