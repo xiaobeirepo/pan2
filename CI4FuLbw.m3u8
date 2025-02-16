@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.400000,
+https://gitee.com/okayjskl/csmck/raw/master/CI4FuLbwoutput000.ts
+#EXTINF:1.800000,
+https://gitee.com/okayjskl/csmck/raw/master/CI4FuLbwoutput001.ts
+#EXT-X-ENDLIST
