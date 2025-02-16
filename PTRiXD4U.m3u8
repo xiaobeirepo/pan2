@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:10
+#EXTINF:8.500000,
+https://gitee.com/okayjskl/csmck/raw/master/PTRiXD4Uoutput000.ts
+#EXTINF:9.833333,
+https://gitee.com/okayjskl/csmck/raw/master/PTRiXD4Uoutput001.ts
+#EXT-X-ENDLIST
