@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:12
+#EXTINF:11.833333,
+https://gitee.com/okayjskl/ucsuh/raw/master/TB01GITloutput000.ts
+#EXTINF:0.266667,
+https://gitee.com/okayjskl/ucsuh/raw/master/TB01GITloutput001.ts
+#EXT-X-ENDLIST
