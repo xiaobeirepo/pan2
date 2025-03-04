@@ -1,0 +1,12 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:8
+#EXTINF:7.481222,
+https://gitee.com/okayjskl/kocos8/raw/master/lh7wBx2ioutput000.ts
+#EXTINF:4.166667,
+https://gitee.com/okayjskl/kocos8/raw/master/lh7wBx2ioutput001.ts
+#EXTINF:4.016667,
+https://gitee.com/okayjskl/kocos8/raw/master/lh7wBx2ioutput002.ts
+#EXT-X-ENDLIST
