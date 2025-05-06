@@ -1,0 +1,16 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:6.533333,
+https://gitee.com/okayjskl/xnams/raw/master/ecydAtcUoutput000.ts
+#EXTINF:8.333333,
+https://gitee.com/okayjskl/xnams/raw/master/ecydAtcUoutput001.ts
+#EXTINF:2.933333,
+https://gitee.com/okayjskl/xnams/raw/master/ecydAtcUoutput002.ts
+#EXTINF:3.200000,
+https://gitee.com/okayjskl/xnams/raw/master/ecydAtcUoutput003.ts
+#EXTINF:6.666667,
+https://gitee.com/okayjskl/xnams/raw/master/ecydAtcUoutput004.ts
+#EXT-X-ENDLIST
