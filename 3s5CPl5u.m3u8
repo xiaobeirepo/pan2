@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:7
+#EXTINF:6.400000,
+https://gitee.com/okayjskl/xnams/raw/master/3s5CPl5uoutput000.ts
+#EXTINF:2.066667,
+https://gitee.com/okayjskl/xnams/raw/master/3s5CPl5uoutput001.ts
+#EXT-X-ENDLIST
