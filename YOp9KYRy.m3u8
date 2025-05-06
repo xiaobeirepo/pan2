@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:8
+#EXTINF:7.533333,
+https://gitee.com/okayjskl/xnams/raw/master/YOp9KYRyoutput000.ts
+#EXTINF:5.466667,
+https://gitee.com/okayjskl/xnams/raw/master/YOp9KYRyoutput001.ts
+#EXT-X-ENDLIST
