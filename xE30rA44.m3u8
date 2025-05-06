@@ -1,0 +1,16 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:5.133333,
+https://gitee.com/okayjskl/xnams/raw/master/xE30rA44output000.ts
+#EXTINF:6.733333,
+https://gitee.com/okayjskl/xnams/raw/master/xE30rA44output001.ts
+#EXTINF:8.333333,
+https://gitee.com/okayjskl/xnams/raw/master/xE30rA44output002.ts
+#EXTINF:8.333333,
+https://gitee.com/okayjskl/xnams/raw/master/xE30rA44output003.ts
+#EXTINF:6.066667,
+https://gitee.com/okayjskl/xnams/raw/master/xE30rA44output004.ts
+#EXT-X-ENDLIST
