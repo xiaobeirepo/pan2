@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.400000,
+https://gitee.com/cjisokw/xniks9/raw/master/MyxIX1evoutput000.ts
+#EXTINF:5.366667,
+https://gitee.com/cjisokw/xniks9/raw/master/MyxIX1evoutput001.ts
+#EXT-X-ENDLIST
