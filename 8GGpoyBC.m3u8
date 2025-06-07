@@ -1,0 +1,14 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.381222,
+https://gitee.com/cjisokw/nxmsk/raw/master/8GGpoyBCoutput000.ts
+#EXTINF:4.166667,
+https://gitee.com/cjisokw/nxmsk/raw/master/8GGpoyBCoutput001.ts
+#EXTINF:4.166667,
+https://gitee.com/cjisokw/nxmsk/raw/master/8GGpoyBCoutput002.ts
+#EXTINF:3.016667,
+https://gitee.com/cjisokw/nxmsk/raw/master/8GGpoyBCoutput003.ts
+#EXT-X-ENDLIST
