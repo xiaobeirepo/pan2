@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:9
+#EXTINF:8.076911,
+https://gitee.com/cjisokw/nxmsk/raw/master/cL9mPd7Routput000.ts
+#EXTINF:0.423067,
+https://gitee.com/cjisokw/nxmsk/raw/master/cL9mPd7Routput001.ts
+#EXT-X-ENDLIST
